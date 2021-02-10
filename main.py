@@ -21,4 +21,15 @@ with open('titanic.csv') as csvfile:
 				cursor.execute(f'INSERT INTO people VALUES ("{line[0]}", "{line[1]}", "{line[5]}", "{line[6]}")')
 			except:
 				pass
+survived = 0
+not_survived = 0
+for i in cursor.execute('SELECT survived FROM people'):
+	if i[0] == 'TRUE':
+		survived += 1
+	elif i[0] == 'FALSE':
+		not_survived += 1
+
+print(survived)
+print(not_survived)
+
 data.commit()
